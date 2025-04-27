@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  resemble-enhance:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: resemble-enhance
+    ports:
+      - "9424:7860"  # Mapea el puerto 9424 del host al puerto 7860 del contenedor (puerto típico de Gradio)
+    volumes:
+      - ./data:/home/pyuser/resemble-enhance/data  # Opcional: para persistir datos
+    restart: always
+    # Agregar soporte para GPU si es necesario (descomenta las siguientes líneas)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
